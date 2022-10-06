@@ -5,9 +5,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Company's contact number in the application list.
- * Guarantees: immutable; is valid as declared in {@link #isValidContactNumber(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidContact(String)}
  */
-public class ContactNumber {
+public class Contact {
 
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -16,20 +16,20 @@ public class ContactNumber {
     public final String value;
 
     /**
-     * Constructs a {@code ContactNumber}.
+     * Constructs a {@code Contact}.
      *
-     * @param contactNumber A valid contact number.
+     * @param contact A valid contact number.
      */
-    public ContactNumber(String contactNumber) {
-        requireNonNull(contactNumber);
-        checkArgument(isValidContactNumber(contactNumber), MESSAGE_CONSTRAINTS);
-        value = contactNumber;
+    public Contact(String contact) {
+        requireNonNull(contact);
+        checkArgument(isValidContact(contact), MESSAGE_CONSTRAINTS);
+        value = contact;
     }
 
     /**
-     * Returns true if a given string is a valid phone number.
+     * Returns true if a given string is a valid contact number.
      */
-    public static boolean isValidContactNumber(String test) {
+    public static boolean isValidContact(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -41,8 +41,8 @@ public class ContactNumber {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ContactNumber // instanceof handles nulls
-                && value.equals(((ContactNumber) other).value)); // state check
+                || (other instanceof Contact // instanceof handles nulls
+                && value.equals(((Contact) other).value)); // state check
     }
 
     @Override

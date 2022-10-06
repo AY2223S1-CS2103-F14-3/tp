@@ -5,12 +5,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Company's name in the application list.
- * Guarantees: immutable; is valid as declared in {@link #isValidCompanyName(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidCompany(String)}
  */
-public class CompanyName {
+public class Company {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Company names should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -18,42 +18,42 @@ public class CompanyName {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String companyName;
+    public final String company;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code Company}.
      *
      * @param name A valid company name.
      */
-    public CompanyName(String name) {
+    public Company(String name) {
         requireNonNull(name);
-        checkArgument(isValidCompanyName(name), MESSAGE_CONSTRAINTS);
-        companyName = name;
+        checkArgument(isValidCompany(name), MESSAGE_CONSTRAINTS);
+        company = name;
     }
 
     /**
      * Returns true if a given string is a valid company name.
      */
-    public static boolean isValidCompanyName(String test) {
+    public static boolean isValidCompany(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
 
     @Override
     public String toString() {
-        return companyName;
+        return company;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof CompanyName // instanceof handles nulls
-                && companyName.equals(((CompanyName) other).companyName)); // state check
+                || (other instanceof Company // instanceof handles nulls
+                && company.equals(((Company) other).company)); // state check
     }
 
     @Override
     public int hashCode() {
-        return companyName.hashCode();
+        return company.hashCode();
     }
 
 }

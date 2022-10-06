@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Company's internship position in the application list.
  * Guarantees: immutable; is valid as declared in {@link #isValidPosition(String)}
  */
-public class PositionApplied {
+public class Position {
 
     public static final String MESSAGE_CONSTRAINTS = "Positions can take any values, and it should not be blank";
 
@@ -15,23 +15,23 @@ public class PositionApplied {
      * The first character of the position applied must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String value;
 
     /**
-     * Constructs an {@code positionApplied}.
+     * Constructs an {@code position}.
      *
-     * @param positionApplied A valid position applied.
+     * @param position A valid position applied.
      */
-    public PositionApplied(String positionApplied) {
-        requireNonNull(positionApplied);
-        checkArgument(isValidPosition(positionApplied), MESSAGE_CONSTRAINTS);
-        value = positionApplied;
+    public Position(String position) {
+        requireNonNull(position);
+        checkArgument(isValidPosition(position), MESSAGE_CONSTRAINTS);
+        value = position;
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid position.
      */
     public static boolean isValidPosition(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -45,8 +45,8 @@ public class PositionApplied {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof PositionApplied // instanceof handles nulls
-                && value.equals(((PositionApplied) other).value)); // state check
+                || (other instanceof Position // instanceof handles nulls
+                && value.equals(((Position) other).value)); // state check
     }
 
     @Override
