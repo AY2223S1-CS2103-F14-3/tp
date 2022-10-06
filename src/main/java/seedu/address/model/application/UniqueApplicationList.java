@@ -1,22 +1,23 @@
 package seedu.address.model.application;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Iterator;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.application.exceptions.ApplicationNotFoundException;
 import seedu.address.model.application.exceptions.DuplicateApplicationException;
 
-import java.util.Iterator;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
 /**
  * A list of applications that enforces uniqueness between its elements and does not allow nulls.
- * An application is considered unique by comparing using {@code Application#isSameApplication(Application)}. As such, adding and updating of
- * applications uses Application#isSameApplication(Application) for equality to ensure that the application being added or updated is
- * unique in terms of identity in the UniqueApplicationList. However, the removal of an application uses Application#equals(Object)
- * to ensure that the application with exactly the same fields will be removed.
+ * An application is considered unique by comparing using {@code Application#isSameApplication(Application)}.
+ * As such, adding and updating of applications uses Application#isSameApplication(Application) for equality
+ * ensure that the application being added or updated is unique in terms of identity in the UniqueApplicationList.
+ * However, the removal of an application uses Application#equals(Object) to ensure that the application with
+ * exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *

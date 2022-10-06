@@ -1,9 +1,9 @@
 package seedu.address.model.application;
 
-import seedu.address.commons.util.StringUtil;
-
 import java.util.List;
 import java.util.function.Predicate;
+
+import seedu.address.commons.util.StringUtil;
 
 /**
  * Tests that an {@code Application}'s {@code Company} matches any of the keywords given.
