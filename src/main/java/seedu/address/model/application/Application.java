@@ -15,16 +15,18 @@ public class Application {
     private final Contact contact;
     private final Email email;
     private final Position position;
+    private final Date date;
 
     /**
      * Every field must be present and not null.
      */
-    public Application(Company company, Contact contact, Email email, Position position) {
-        requireAllNonNull(company, contact, email, position);
+    public Application(Company company, Contact contact, Email email, Position position, Date date) {
+        requireAllNonNull(company, contact, email, position, date);
         this.company = company;
         this.contact = contact;
         this.email = email;
         this.position = position;
+        this.date = date;
     }
 
     public Company getCompany() {
@@ -41,6 +43,9 @@ public class Application {
 
     public Position getPosition() {
         return position;
+    }
+    public Date getDate() {
+        return date;
     }
 
     /**
@@ -75,13 +80,14 @@ public class Application {
         return otherApplication.getCompany().equals(getCompany())
                 && otherApplication.getContact().equals(getContact())
                 && otherApplication.getEmail().equals(getEmail())
-                && otherApplication.getPosition().equals(getPosition());
+                && otherApplication.getPosition().equals(getPosition())
+                && otherApplication.getDate().equals(getDate());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(company, contact, email, position);
+        return Objects.hash(company, contact, email, position, date);
     }
 
     @Override
@@ -93,7 +99,9 @@ public class Application {
                 .append("; Contact number: ")
                 .append(getContact())
                 .append("; Email: ")
-                .append(getEmail());
+                .append(getEmail())
+                .append("; Apply on: ")
+                .append(getDate());
 
         return builder.toString();
     }
