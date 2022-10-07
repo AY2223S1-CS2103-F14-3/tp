@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Company's contact number in the application list.
+ * Represents a Company's contact in the application list.
  * Guarantees: immutable; is valid as declared in {@link #isValidContact(String)}
  */
 public class Contact {
