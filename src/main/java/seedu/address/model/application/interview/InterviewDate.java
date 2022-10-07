@@ -14,16 +14,14 @@ public class InterviewDate {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Date should be in the format of dd/mm/yyyy, dd-mm-yyyy or dd.mm.yyyy with proper month "
-                    + "and leap year support";
-    //Only valid if dd/mm/yyyy, dd-mm-yyyy or dd.mm.yyyy with month and leap year support
+            "Date should be in the format of dd-mm-yyyy with proper month and leap year support";
+    //Only valid if dd-mm-yyyy with month and leap year support
     //Retrieve from https://stackoverflow.com/questions/15491894/regex-to-validate-date-formats-dd-mm-yyyy-dd-mm-yyyy
     // -dd-mm-yyyy-dd-mmm-yyyy
-    public static final String VALIDATION_REGEX = "^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)"
-            + "(\\/|-|\\.)(?:0?[13-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3(?:("
+    public static final String VALIDATION_REGEX = "^(?:(?:31(-)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)"
+            + "(-)(?:0?[13-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(-)0?2\\3(?:("
             + "?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))"
-            + "$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2"
-            + "})$";
+            + "$|^(?:0?[1-9]|1\\d|2[0-8])(-)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$";
     public final LocalDate value;
 
     /**
@@ -34,7 +32,7 @@ public class InterviewDate {
     public InterviewDate(String dateString) {
         requireNonNull(dateString);
         checkArgument(isValidDate(dateString), MESSAGE_CONSTRAINTS);
-        value = this.parseLocalDate(dateString);
+        value = parseLocalDate(dateString);
     }
 
     /**
@@ -45,7 +43,7 @@ public class InterviewDate {
     }
 
     private LocalDate parseLocalDate(String dateString) {
-        return LocalDate.parse(dateString);
+        return LocalDate.parse(dateString, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     }
 
     @Override
