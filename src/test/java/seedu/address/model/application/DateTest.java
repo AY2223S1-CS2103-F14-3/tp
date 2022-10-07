@@ -1,5 +1,6 @@
 package seedu.address.model.application;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -42,5 +43,10 @@ public class DateTest {
         assertTrue(Date.isValidDate("12-09-1987"));
         assertTrue(Date.isValidDate("29-02-2004")); // leap year
 
+    }
+    @Test
+    public void date() {
+        assertEquals(new Date("12-11-2022").toString(), "Nov 12 2022");
+        assertEquals(new Date("29-02-2020").toString(), "Feb 29 2020");
     }
 }
