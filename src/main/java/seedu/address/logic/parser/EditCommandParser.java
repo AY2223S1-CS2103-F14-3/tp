@@ -40,16 +40,17 @@ public class EditCommandParser implements Parser<EditCommand> {
             editApplicationDescriptor.setCompany(ParserUtil.parseCompany(argMultimap.getValue(PREFIX_COMPANY).get()));
         }
         if (argMultimap.getValue(PREFIX_CONTACT).isPresent()) {
-            editApplicationDescriptor.setPhone(ParserUtil.parseContact(argMultimap.getValue(PREFIX_CONTACT).get()));
+            editApplicationDescriptor.setContact(ParserUtil.parseContact(argMultimap.getValue(PREFIX_CONTACT).get()));
         }
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
-            editApplicationDescriptor.setAddress(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get()));
+            editApplicationDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             editApplicationDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_POSITION).isPresent()) {
-            editApplicationDescriptor.setAddress(ParserUtil.parsePosition(argMultimap.getValue(PREFIX_POSITION).get()));
+            editApplicationDescriptor.setPosition(
+                    ParserUtil.parsePosition(argMultimap.getValue(PREFIX_POSITION).get()));
         }
 
         if (!editApplicationDescriptor.isAnyFieldEdited()) {
