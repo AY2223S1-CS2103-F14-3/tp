@@ -28,7 +28,6 @@ public class ModelManager implements Model {
     private final FilteredList<Application> filteredApplications;
     private final SortedList<Application> sortedFilteredApplications;
     private final FilteredList<Application> applicationsWithInterview;
-    private final ObservableList<Application> applicationsWithUpcomingInterviews;
 
     /**
      * Initializes a ModelManager with the given versionedApplicationBook and userPrefs.
@@ -44,7 +43,6 @@ public class ModelManager implements Model {
         sortedFilteredApplications = new SortedList<>(filteredApplications);
         initialiseSortOrder();
         applicationsWithInterview = filterApplicationsWithInterview().filtered(Model.HIDE_ARCHIVE_IN_LIST);
-        applicationsWithUpcomingInterviews = filterApplicationsWithUpcomingInterview();
     }
 
     public ModelManager() {
@@ -98,13 +96,6 @@ public class ModelManager implements Model {
     private ObservableList<Application> filterApplicationsWithInterview() {
         return versionedApplicationBook.getApplicationList()
                 .filtered(Application::hasInterview)
-                .sorted(new InterviewComparator());
-    }
-
-    private ObservableList<Application> filterApplicationsWithUpcomingInterview() {
-        return versionedApplicationBook.getApplicationList()
-                .filtered(application -> application.hasInterview() && !application.isArchived())
-                .filtered(new UpcomingInterviewPredicate())
                 .sorted(new InterviewComparator());
     }
 
@@ -238,7 +229,10 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Application> getApplicationsWithUpcomingInterviewList() {
-        return applicationsWithUpcomingInterviews;
+        return versionedApplicationBook.getApplicationList()
+                .filtered(application -> application.hasInterview() && !application.isArchived())
+                .filtered(new UpcomingInterviewPredicate())
+                .sorted(new InterviewComparator());
     }
 
     @Override
