@@ -146,19 +146,10 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Updates the reminder window for any new upcoming interviews.
-     */
-    @FXML
-    private void updateReminder() {
-        reminderWindow = new ReminderWindow(logic.getApplicationListWithUpcomingInterview());
-    }
-
-    /**
      * Opens the reminder window or focuses on it if it's already opened.
      */
     @FXML
     public void handleReminder() {
-        updateReminder();
         if (!reminderWindow.isShowing()) {
             reminderWindow.show();
         } else {

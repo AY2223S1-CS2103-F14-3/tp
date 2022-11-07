@@ -90,6 +90,9 @@ public class ReminderWindow extends UiPart<Stage> {
         getRoot().requestFocus();
     }
 
+    /**
+     * Refreshes the upcoming application list with updated predicate.
+     */
     public void refresh(ObservableList<Application> applicationListWithUpcomingInterview) {
         upcomingInterviewListView.setItems(applicationListWithUpcomingInterview);
     }
