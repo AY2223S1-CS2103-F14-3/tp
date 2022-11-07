@@ -89,4 +89,8 @@ public class ReminderWindow extends UiPart<Stage> {
     public void focus() {
         getRoot().requestFocus();
     }
+
+    public void refresh(ObservableList<Application> applicationListWithUpcomingInterview) {
+        upcomingInterviewListView.setItems(applicationListWithUpcomingInterview);
+    }
 }

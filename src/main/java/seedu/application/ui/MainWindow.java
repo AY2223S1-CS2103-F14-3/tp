@@ -155,6 +155,7 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             reminderWindow.focus();
         }
+        reminderWindow.refresh(logic.getApplicationListWithUpcomingInterview());
     }
 
     /**
